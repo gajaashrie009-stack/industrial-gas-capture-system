@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrial Gas Capture & Utilization | Eco-Industrial Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-card: rgba(18, 24, 38, 0.85);
+      --bg-card-hover: rgba(28, 38, 58, 0.95);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(0, 210, 255, 0.25);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --cyan-accent: #00d2ff;
+      --green-accent: #00e676;
+      --emerald: #10b981;
+      --amber-accent: #fbbf24;
+      --red-accent: #f87171;
+      --purple-accent: #a855f7;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(0, 230, 118, 0.07) 0%, transparent 45%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #00d2ff, #00e676);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+      color: #090d16;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan-accent);
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #00d2ff, #00e676);
+      color: #06111e;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 90px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 210, 255, 0.1);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      color: var(--cyan-accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      max-width: 900px;
+      margin: 0 auto 20px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 30%, #00d2ff 75%, #00e676 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 40px;
+      font-weight: 400;
+    }
+
+    .pillar-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .pillar-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-color);
+      padding: 10px 24px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .pillar-pill span {
+      font-size: 1.2rem;
+    }
+
+    /* Section Styles */
+    section {
+      padding: 70px 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      color: var(--cyan-accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 650px;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+
+    /* Card Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-glow);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Target Gas Cards */
+    .gas-badge {
+      font-family: var(--font-mono);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .gas-badge.co2 { background: rgba(59, 130, 246, 0.2); border: 1px solid #3b82f6; color: #93c5fd; }
+    .gas-badge.nox { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; }
+    .gas-badge.sox { background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; color: #fcd34d; }
+    .gas-badge.co  { background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #d8b4fe; }
+    .gas-badge.voc { background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #6ee7b7; }
+
+    /* Circular Flowchart */
+    .flow-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .flow-comparison { grid-template-columns: 1fr; }
+    }
+
+    .flow-box {
+      border-radius: 16px;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+
+    .flow-box.bad {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.05), rgba(18, 24, 38, 0.8));
+    }
+
+    .flow-box.good {
+      border-color: rgba(0, 230, 118, 0.3);
+      background: linear-gradient(180deg, rgba(0, 230, 118, 0.05), rgba(18, 24, 38, 0.8));
+    }
+
+    .step-chain {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      font-size: 0.95rem;
+    }
+
+    .step-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .step-circle.bad { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    .step-circle.good { background: rgba(0, 230, 118, 0.2); color: #00e676; }
+
+    /* System Process Steps (Horizontal Flow) */
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 992px) {
+      .process-timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 560px) {
+      .process-timeline { grid-template-columns: 1fr; }
+    }
+
+    .process-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .process-card.active {
+      border-color: var(--cyan-accent);
+      background: rgba(0, 210, 255, 0.05);
+    }
+
+    .step-badge {
+      width: 32px;
+      height: 32px;
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--cyan-accent);
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* Warning Banner */
+    .alert-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .alert-icon {
+      font-size: 1.5rem;
+      color: var(--amber-accent);
+    }
+
+    /* Interactive Calculator */
+    .calc-box {
+      background: linear-gradient(145deg, rgba(18, 24, 38, 0.95), rgba(9, 13, 22, 0.95));
+      border: 1px solid var(--border-glow);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+    }
+
+    @media (max-width: 768px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+
+    .slider-group {
+      margin-bottom: 24px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--cyan-accent);
+      height: 6px;
+      background: #1e293b;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    .results-display {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .metric-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .metric-value {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-accent);
+    }
+
+    /* Tab Switching for Pollutants */
+    .gas-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--cyan-accent);
+      color: #090d16;
+      border-color: var(--cyan-accent);
+    }
+
+    .gas-tab-content {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .gas-tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Future Matrix */
+    .scope-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+    }
+
+    .scope-icon {
+      font-size: 1.4rem;
+      color: var(--cyan-accent);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 48px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      background: #060910;
+    }
+
+    .c-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--cyan-accent);
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-badge">⚡</div>
+        <span>IGCU System</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#concept">Our Concept</a></li>
+        <li><a href="#gases">Target Gases</a></li>
+        <li><a href="#cycle">Recovery Cycle</a></li>
+        <li><a href="#calculator">Yield Calc</a></li>
+        <li><a href="#future">Future Scope</a></li>
+      </ul>
+      <a href="#calculator" class="btn-action">Launch Simulator</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section (Slide 1) -->
+    <section class="hero">
+      <div class="container">
+        <div class="badge-tag">🌿 Clean Technology & Industrial Decarbonization</div>
+        <h1>
+          INDUSTRIAL GAS <span class="gradient-text">CAPTURE & UTILIZATION</span>
+        </h1>
+        <p class="hero-subtitle">
+          Transforming Toxic Industrial Emissions into Valuable Resources & Economic Assets.
+        </p>
+
+        <div class="pillar-row">
+          <div class="pillar-pill"><span>🌱</span> Cleaner Environment</div>
+          <div class="pillar-pill"><span>🏭</span> Sustainable Industry</div>
+          <div class="pillar-pill"><span>✨</span> A Brighter Future</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: The Problem -->
+    <section id="problem">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">01 / Invisible Threat</span>
+          <h2 class="section-title">The Problem: Industrial Emissions</h2>
+          <p class="section-desc">Conventional pollution control focuses merely on removal or chimney venting rather than capturing and creating value.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3 style="margin-bottom: 12px; color: var(--red-accent);">💨 Hazardous Air Emissions</h3>
+            <p style="color: var(--text-muted);">
+              Heavy manufacturing, power plants, and petrochemical industries release millions of tons of gaseous pollutants yearly into the atmosphere.
+            </p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 12px; color: var(--amber-accent);">⚠️ Climate & Ecological Harm</h3>
+            <p style="color: var(--text-muted);">
+              Major industrial pollutants (CO₂, NOₓ, SOₓ, CO, and VOCs) directly accelerate global warming, photochemical smog, acid rain, and chronic respiratory illness.
+            </p>
+          </div>
+          <div class="card">
+            <h3 style="margin-bottom: 12px; color: var(--cyan-accent);">🔄 The Conventional Flaw</h3>
+            <p style="color: var(--text-muted);">
+              Traditional scrubbers and exhaust stacks treat emissions as zero-value waste to dilute, ignoring massive chemical and commercial potential.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3 & Slide 10: Our Concept & Circular Approach -->
+    <section id="concept">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">02 / Paradigm Shift</span>
+          <h2 class="section-title">Our Concept: From Emission to Resource</h2>
+          <p class="section-desc">Transitioning from a linear wasteful pipeline to a closed-loop circular economy.</p>
+        </div>
+
+        <div class="flow-comparison">
+          <!-- Linear Approach -->
+          <div class="flow-box bad">
+            <h3 style="color: var(--red-accent); margin-bottom: 8px;">✕ Traditional Linear Approach</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Emits toxic compounds straight into air reservoirs, causing permanent environmental loss.</p>
+            <div class="step-chain">
+              <div class="step-item"><span class="step-circle bad">1</span> Industrial Operation</div>
+              <div class="step-item"><span class="step-circle bad">2</span> Raw Untreated Emission</div>
+              <div class="step-item"><span class="step-circle bad">3</span> Atmospheric Release</div>
+              <div class="step-item"><span class="step-circle bad">4</span> Severe Environmental Pollution</div>
+            </div>
+          </div>
+
+          <!-- Circular Approach -->
+          <div class="flow-box good">
+            <h3 style="color: var(--green-accent); margin-bottom: 8px;">✓ Our Closed-Loop Circular Model</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Captures emissions at the point source, purifies them, and converts them into revenue-generating commodities.</p>
+            <div class="step-chain">
+              <div class="step-item"><span class="step-circle good">1</span> Industrial Process</div>
+              <div class="step-item"><span class="step-circle good">2</span> Source Point Capture</div>
+              <div class="step-item"><span class="step-circle good">3</span> Chemical Separation & Purification</div>
+              <div class="step-item"><span class="step-circle good">4</span> High-Value Conversion to Useful Products</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Target Industrial Gases -->
+    <section id="gases">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">03 / Target Pollutants</span>
+          <h2 class="section-title">What Are We Capturing?</h2>
+          <p class="section-desc">Key target gases emitted from industrial facilities and their primary environmental threats.</p>
+        </div>
+
+        <div class="grid-5">
+          <div class="card">
+            <div class="gas-badge co2">CO₂</div>
+            <h4>Carbon Dioxide</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;"><strong>Major Concern:</strong></p>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">Primary Greenhouse Gas causing planetary temperature rise.</p>
+          </div>
+
+          <div class="card">
+            <div class="gas-badge nox">NOₓ</div>
+            <h4>Nitrogen Oxides</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;"><strong>Major Concern:</strong></p>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">Dangerous smog precursor & photochemical air pollution.</p>
+          </div>
+
+          <div class="card">
+            <div class="gas-badge sox">SOₓ</div>
+            <h4>Sulfur Oxides</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;"><strong>Major Concern:</strong></p>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">Acid rain formation & intense respiratory tract irritation.</p>
+          </div>
+
+          <div class="card">
+            <div class="gas-badge co">CO</div>
+            <h4>Carbon Monoxide</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;"><strong>Major Concern:</strong></p>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">Lethal toxic asphyxiant gas with high chemical reactivity.</p>
+          </div>
+
+          <div class="card">
+            <div class="gas-badge voc">VOCs</div>
+            <h4>Volatile Organics</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;"><strong>Major Concern:</strong></p>
+            <p style="color: #cbd5e1; font-size: 0.9rem;">Ground ozone generation, carcinogenic hydrocarbons.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5 & 6: Beyond CO2 & Utilization Breakdown -->
+    <section id="utilization">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">04 / Transformation Tech</span>
+          <h2 class="section-title">Beyond CO₂: Transforming Each Pollutant</h2>
+          <p class="section-desc">Select a target gas below to inspect its specialized chemical recovery pathway and end commercial products.</p>
+        </div>
+
+        <!-- Interactive Gas Tabs -->
+        <div class="gas-tabs">
+          <button class="tab-btn active" onclick="switchGas('co2', this)">CO₂ Utilization</button>
+          <button class="tab-btn" onclick="switchGas('nox', this)">NOₓ Recovery</button>
+          <button class="tab-btn" onclick="switchGas('sox', this)">SOₓ Products</button>
+          <button class="tab-btn" onclick="switchGas('co', this)">CO Synthesis</button>
+          <button class="tab-btn" onclick="switchGas('voc', this)">VOC Recycling</button>
+        </div>
+
+        <div id="content-co2" class="gas-tab-content active">
+          <div class="grid-2">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 12px;">CCUS / Carbon Capture, Storage & Utilization</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Carbon Dioxide (CO₂) Pathways</h3>
+              <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Captured CO₂ is separated via solvent absorption or cryogenic fractionation, compressed, and either stored in deep geological formations or utilized as a synthetic feedstock.
+              </p>
+              <ul style="color: var(--text-main); list-style-position: inside; line-height: 1.8;">
+                <li><strong>Methanol & Synthetic Fuels:</strong> Catalytic hydrogenation yields green methanol.</li>
+                <li><strong>Mineralized Concrete:</strong> Permanent mineral trapping inside structural cement.</li>
+                <li><strong>Chemical Precursors:</strong> Polycarbonates, carbonates, and beverage-grade CO₂.</li>
+              </ul>
+            </div>
+            <div class="card" style="background: rgba(0, 210, 255, 0.05); border-color: rgba(0, 210, 255, 0.2);">
+              <h4 style="color: var(--cyan-accent); margin-bottom: 10px;">Primary Commercial Value</h4>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">
+                Concrete curing with CO₂ permanently locks up to 25 kg CO₂ per cubic meter, increasing compressive strength by 15-20% while earning certified carbon credits.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-nox" class="gas-tab-content">
+          <div class="grid-2">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 12px; color: var(--red-accent); border-color: var(--red-accent);">Nitrogen Recovery</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Nitrogen Oxides (NOₓ)</h3>
+              <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Recovered through controlled catalytic oxidation and wet scrubbers to produce vital agricultural and chemical products.
+              </p>
+              <ul style="color: var(--text-main); list-style-position: inside; line-height: 1.8;">
+                <li><strong>Nitric Acid (HNO₃):</strong> Core chemical building block for high-demand syntheses.</li>
+                <li><strong>Nitrogen Fertilizers:</strong> Converted to ammonium nitrate and related plant nutrients.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="color: var(--green-accent); margin-bottom: 10px;">Impact</h4>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">
+                Replaces high-emission Haber-Bosch ammonia demand by salvaging exhaust nitrates into high-purity fertilizer salts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-sox" class="gas-tab-content">
+          <div class="grid-2">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 12px; color: var(--amber-accent); border-color: var(--amber-accent);">Sulfur Reclaim</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Sulfur Oxides (SOₓ)</h3>
+              <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Captured via flue-gas desulfurization (FGD) and catalytically transformed into industrial-grade sulfur compounds.
+              </p>
+              <ul style="color: var(--text-main); list-style-position: inside; line-height: 1.8;">
+                <li><strong>Sulfuric Acid (H₂SO₄):</strong> The world’s most widely consumed industrial acid.</li>
+                <li><strong>Synthetic Gypsum:</strong> Replaces mined gypsum for high-performance drywall & plaster.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="color: var(--amber-accent); margin-bottom: 10px;">Impact</h4>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">
+                100% elimination of acid rain precursors with immediate revenue generation from battery and fertilizer manufacturing.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-co" class="gas-tab-content">
+          <div class="grid-2">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 12px; color: var(--purple-accent); border-color: var(--purple-accent);">Syngas Processing</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Carbon Monoxide (CO)</h3>
+              <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Purified from metallurgical blast furnaces and partial combustion streams to serve as a potent building block.
+              </p>
+              <ul style="color: var(--text-main); list-style-position: inside; line-height: 1.8;">
+                <li><strong>Syngas (CO + H₂):</strong> Foundation of the Fischer-Tropsch fuel synthesis.</li>
+                <li><strong>Acetic Acid & Esters:</strong> Critical polymer feedstocks and pharmaceutical reagents.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="color: var(--purple-accent); margin-bottom: 10px;">Impact</h4>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">
+                Extracts calorific and synthetic utility from a fatal toxic emission, reducing dependency on virgin petroleum feedstocks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="content-voc" class="gas-tab-content">
+          <div class="grid-2">
+            <div>
+              <span class="badge-tag" style="margin-bottom: 12px; color: var(--emerald); border-color: var(--emerald);">Volatile Recovery</span>
+              <h3 style="font-size: 1.5rem; margin-bottom: 12px;">Volatile Organic Compounds (VOCs)</h3>
+              <p style="color: var(--text-muted); margin-bottom: 16px;">
+                Adsorbed onto activated carbon beds or regenerative thermal oxidizers with closed-circuit solvent condensing.
+              </p>
+              <ul style="color: var(--text-main); list-style-position: inside; line-height: 1.8;">
+                <li><strong>Recovered Industrial Solvents:</strong> Toluene, acetone, ethanol, and hexane.</li>
+                <li><strong>Recycled Paints & Thinners:</strong> Returned directly into closed-loop paint shops.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="color: var(--green-accent); margin-bottom: 10px;">Impact</h4>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">
+                Saves up to 60% of procurement costs on virgin industrial solvents in chemical coating and printing facilities.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6 Warning Note -->
+        <div class="alert-box">
+          <div class="alert-icon">⚠️</div>
+          <div>
+            <strong style="color: var(--amber-accent); font-size: 1rem;">Crucial Engineering Constraint:</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">
+              These industrial gases <strong>cannot</strong> simply be collected or compressed together! Due to cross-reactivity, acid condensation, and explosive limits, each pollutant requires dedicated, gas-specific capture chemistry, purification beds, and isolated storage vessels.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Slide 7: How the System Works (Cycle) -->
+    <section id="cycle">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">05 / The Workflow</span>
+          <h2 class="section-title">The Industrial Gas Recovery Cycle</h2>
+          <p class="section-desc">7 synchronized stages powering the automated capture, safe containment, and chemical conversion loop.</p>
+        </div>
+
+        <div class="process-timeline">
+          <div class="process-card">
+            <div class="step-badge">1</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Industrial Process</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Exhaust gases generated from combustion & kilns.</p>
+          </div>
+          <div class="process-card">
+            <div class="step-badge">2</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Emission Capture</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">High-temp ducting & electrostatic precipitators.</p>
+          </div>
+          <div class="process-card">
+            <div class="step-badge">3</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Gas Separation</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Selective membranes & cryogenic fractionators.</p>
+          </div>
+          <div class="process-card">
+            <div class="step-badge">4</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Purification</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Adsorption beds remove moisture & particulates.</p>
+          </div>
+          <div class="process-card">
+            <div class="step-badge">5</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Safe Storage</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Pressure-rated cryogenic & pressurized tanks.</p>
+          </div>
+          <div class="process-card">
+            <div class="step-badge">6</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px;">Conversion</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Catalytic reactors, mineralization & synthesis.</p>
+          </div>
+          <div class="process-card active">
+            <div class="step-badge" style="background: var(--green-accent); color: #090d16;">7</div>
+            <h4 style="font-size: 0.95rem; margin-bottom: 6px; color: var(--green-accent);">Useful Products</h4>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Fertilizers, concrete, fuels & chemical feedstocks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Safe Storage Standards -->
+    <section id="storage">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">06 / Containment Engineering</span>
+          <h2 class="section-title">Safe Storage Protocols</h2>
+          <p class="section-desc">Strict engineering safeguards prevent leakage, runaway reactions, and catastrophic failure.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-bottom: 16px; color: var(--cyan-accent);">🛡️ Containment Principles</h3>
+            <ul style="color: var(--text-muted); list-style-position: inside; line-height: 1.9; font-size: 0.95rem;">
+              <li><strong>Engineered Pressure Vessels:</strong> Specifically rated metallurgy (ASME Boiler & Pressure Vessel code).</li>
+              <li><strong>Controlled Temp & Pressure:</strong> Active cryogenic cooling and relief manifolds.</li>
+              <li><strong>Physical Separation:</strong> Strict spatial segregation of incompatible and reactive gas lines.</li>
+              <li><strong>Regulatory Compliance:</strong> Adherence to OSHA, ISO 14001, and EPA environmental standards.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom: 16px; color: var(--green-accent);">📡 24/7 Smart Telemetry</h3>
+            <ul style="color: var(--text-muted); list-style-position: inside; line-height: 1.9; font-size: 0.95rem;">
+              <li><strong>Continuous Leak Monitoring:</strong> Optical gas imaging (OGI) and ultrasonic detectors.</li>
+              <li><strong>Corrosion Sensors:</strong> Real-time wall-thickness ultrasonic telemetry.</li>
+              <li><strong>Automated Emergency Valves:</strong> Fail-safe pneumatic isolation within &lt;50 milliseconds.</li>
+              <li><strong>Multi-zone SCADA:</strong> Redundant monitoring logic with instant alert dispatch.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Simulation / Yield Calculator -->
+    <section id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">07 / Interactive Tool</span>
+          <h2 class="section-title">Gas Capture & Economic Yield Simulator</h2>
+          <p class="section-desc">Simulate an industrial plant emission stream to estimate capture volume, products generated, and net economic value.</p>
+        </div>
+
+        <div class="calc-box">
+          <div class="calc-grid">
+            <!-- Inputs -->
+            <div>
+              <div class="slider-group">
+                <div class="slider-header">
+                  <span>Plant Flue Gas Volume (Tons/Day):</span>
+                  <span id="flueVal" style="font-family: var(--font-mono); color: var(--cyan-accent);">500 Tons</span>
+                </div>
+                <input type="range" id="flueSlider" min="50" max="2500" step="50" value="500" oninput="calculateYield()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header">
+                  <span>Capture Efficiency (%):</span>
+                  <span id="effVal" style="font-family: var(--font-mono); color: var(--green-accent);">88 %</span>
+                </div>
+                <input type="range" id="effSlider" min="60" max="98" step="1" value="88" oninput="calculateYield()">
+              </div>
+
+              <div class="slider-group">
+                <div class="slider-header">
+                  <span>CO₂ Concentration in Flue Gas (%):</span>
+                  <span id="co2Val" style="font-family: var(--font-mono); color: var(--amber-accent);">14 %</span>
+                </div>
+                <input type="range" id="co2Slider" min="4" max="30" step="1" value="14" oninput="calculateYield()">
+              </div>
+
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 10px;">
+                *Calculated using standardized thermodynamic stoichiometric conversion models for methanol, calcium carbonate mineralization, and ammonium nitrate.
+              </p>
+            </div>
+
+            <!-- Output Display -->
+            <div class="results-display">
+              <div class="metric-row">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">Net CO₂ Captured</div>
+                  <div style="font-size: 0.95rem; font-weight: 600;">Carbon Prevented from Atmosphere</div>
+                </div>
+                <div class="metric-value" id="netCo2">61.6 T/d</div>
+              </div>
+
+              <div class="metric-row">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">Synthetic Methanol Output</div>
+                  <div style="font-size: 0.95rem; font-weight: 600;">Green Fuel / Chemical Precursor</div>
+                </div>
+                <div class="metric-value" id="methanolOut" style="color: var(--cyan-accent);">44.8 T/d</div>
+              </div>
+
+              <div class="metric-row">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">Mineralized Concrete Yield</div>
+                  <div style="font-size: 0.95rem; font-weight: 600;">Embodied Carbon Construction</div>
+                </div>
+                <div class="metric-value" id="concreteOut" style="color: #cbd5e1;">2,464 m³</div>
+              </div>
+
+              <div class="metric-row">
+                <div>
+                  <div style="font-size: 0.85rem; color: var(--text-muted);">Estimated Daily Value Created</div>
+                  <div style="font-size: 0.95rem; font-weight: 600;">Resource & Carbon Credit Value</div>
+                </div>
+                <div class="metric-value" id="dollarVal" style="color: var(--green-accent); font-size: 1.5rem;">$24,640</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 11 & 12: Challenges & Future Scope -->
+    <section id="future">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-num">08 / Innovation Horizon</span>
+          <h2 class="section-title">Challenges & Future Scope</h2>
+          <p class="section-desc">Overcoming technological barriers to pioneer the next generation of industrial emission management.</p>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 30px;">
+          <!-- Challenges (Slide 11) -->
+          <div class="card">
+            <h3 style="color: var(--amber-accent); margin-bottom: 16px;">⚡ Critical Challenges to Solve</h3>
+            <ul style="color: var(--text-muted); list-style-position: inside; line-height: 1.9;">
+              <li><strong>High Energy Requirements:</strong> Desorption and regeneration demand thermal power.</li>
+              <li><strong>Capture Efficiency:</strong> Optimizing rate under dynamic flow velocities.</li>
+              <li><strong>Separation & Purification:</strong> High purity required for chemical feedstocks.</li>
+              <li><strong>Capital & Infrastructure Cost:</strong> Retrofit expenses for legacy chimneys.</li>
+              <li><strong>Safe Long-Term Storage:</strong> Sealing integrity and geological monitoring.</li>
+            </ul>
+          </div>
+
+          <!-- Future Scope (Slide 12) -->
+          <div class="card">
+            <h3 style="color: var(--cyan-accent); margin-bottom: 16px;">🚀 Next-Gen Advancements</h3>
+            <ul style="color: var(--text-muted); list-style-position: inside; line-height: 1.9;">
+              <li><strong>Metal-Organic Frameworks (MOFs):</strong> Ultra-high surface area nanoadsorbents.</li>
+              <li><strong>Membrane Separation:</strong> Low-energy polymeric and ceramic sieves.</li>
+              <li><strong>AI-Assisted Monitoring:</strong> Real-time predictive emission tracking.</li>
+              <li><strong>Renewable Integration:</strong> Direct coupling with solar/wind green hydrogen.</li>
+              <li><strong>Selective Recovery:</strong> Precious rare compound isolation at low concentrations.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Slide 13: Conclusion Banner -->
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(0, 230, 118, 0.08)); border-color: rgba(0, 230, 118, 0.3); padding: 48px 24px;">
+          <h2 style="font-size: 2rem; margin-bottom: 16px; color: #ffffff;">
+            "Waste Gases Can Become Resources."
+          </h2>
+          <p style="max-width: 800px; margin: 0 auto; color: #cbd5e1; font-size: 1.1rem; line-height: 1.7;">
+            The objective is not merely to prevent industrial emissions from entering the atmosphere, but to develop a <strong>closed-loop system</strong> where harmful or unwanted gases are captured, safely managed, and wherever technically feasible, transformed into useful resources.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="font-weight: 600; color: #f1f5f9;">Industrial Gas Capture & Utilization (IGCU) Project</p>
+      <p style="margin-top: 6px;">Transforming Toxic Emissions into Sustainable Resources</p>
+      <div>
+        <span class="c-badge">⚡ Powered by C Program (Winsock Web Server & HTML Generator)</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab switching for gases
+    function switchGas(gasId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.gas-tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('content-' + gasId).classList.add('active');
+    }
+
+    // Interactive yield calculator
+    function calculateYield() {
+      const flue = parseFloat(document.getElementById('flueSlider').value);
+      const eff = parseFloat(document.getElementById('effSlider').value);
+      const co2Pct = parseFloat(document.getElementById('co2Slider').value);
+
+      document.getElementById('flueVal').innerText = flue + " Tons";
+      document.getElementById('effVal').innerText = eff + " %";
+      document.getElementById('co2Val').innerText = co2Pct + " %";
+
+      const co2Total = flue * (co2Pct / 100);
+      const co2Captured = co2Total * (eff / 100);
+      const methanol = co2Captured * 0.727; // stoichiometric approximate
+      const concrete = co2Captured * 40;    // 25kg/m3 -> 40 m3 per ton
+      const dailyVal = (methanol * 380) + (co2Captured * 85) + (concrete * 5); // product + credit value
+
+      document.getElementById('netCo2').innerText = co2Captured.toFixed(1) + " T/d";
+      document.getElementById('methanolOut').innerText = methanol.toFixed(1) + " T/d";
+      document.getElementById('concreteOut').innerText = Math.round(concrete).toLocaleString() + " m³";
+      document.getElementById('dollarVal').innerText = "$" + Math.round(dailyVal).toLocaleString();
+    }
+
+    // Initialize calculator
+    calculateYield();
+  </script>
+</body>
+</html>
